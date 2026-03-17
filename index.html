@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Digital Tasbeeh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom animation for the number */
+        .count-up {
+            transition: transform 0.1s ease-in-out;
+        }
+        .count-up:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-white">
+
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function TasbeehApp() {
+            // State: count hamara data hai, setCount usey badalne wala function
+            const [count, setCount] = useState(0);
+
+            return (
+                <div className="flex flex-col items-center justify-center h-screen">
+                    <h2 className="text-xl md:text-2xl mb-10 text-slate-500 uppercase tracking-[0.3em] font-light">
+                        Digital Tasbeeh
+                    </h2>
+
+                    {/* Massive Number - No innerHTML needed, React handles it */}
+                    <div className="text-[12rem] md:text-[15rem] font-black mb-16 text-emerald-400 drop-shadow-[0_0_35px_rgba(52,211,153,0.3)]">
+                        {count}
+                    </div>
+
+                    <div className="flex gap-8">
+                        {/* Count Button */}
+                        <button 
+                            onClick={() => setCount(count + 1)}
+                            className="bg-emerald-600 hover:bg-emerald-500 text-white px-12 py-5 rounded-3xl text-2xl font-bold shadow-xl active:scale-90 transition-all border-b-8 border-emerald-800"
+                        >
+                            COUNT
+                        </button>
+
+                        {/* Reset Button */}
+                        <button 
+                            onClick={() => setCount(0)}
+                            className="bg-rose-600 hover:bg-rose-500 text-white px-12 py-5 rounded-3xl text-2xl font-bold shadow-xl active:scale-90 transition-all border-b-8 border-rose-800"
+                        >
+                            RESET
+                        </button>
+                    </div>
+
+                    <p className="mt-16 text-slate-600 text-sm font-mono uppercase tracking-widest">
+                        Reactive State Management
+                    </p>
+                </div>
+            );
+        }
+
+        // React ko DOM ke sath connect karna
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TasbeehApp />);
+    </script>
+</body>
+</html>
